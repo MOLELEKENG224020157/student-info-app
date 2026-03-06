@@ -9,14 +9,43 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Student Info App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // MAIN COLOR - changed from blue to green
+        primarySwatch: Colors.green,
+        
+        // APP BAR THEME - styles all app bars
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white, // Text/icon color
+          centerTitle: true,
+          elevation: 4, // Shadow depth
+        ),
+        
+        // BUTTON THEME - styles all elevated buttons
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.orange,
+            foregroundColor: Colors.white,
+            padding: const EdgeInsets.all(15),
+            minimumSize: const Size(100, 40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+        
+        // TEXT THEME - styles all text
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontSize: 16),
+          bodyMedium: TextStyle(fontSize: 14, color: Colors.grey),
+        ),
       ),
       home: const MyHomePage(),
     );
   }
-}//End MyApp
+}
 
 class MyHomePage extends StatefulWidget{
   const MyHomePage({super.key});
@@ -42,7 +71,6 @@ Widget build(BuildContext context) {
 return Scaffold(
 appBar: AppBar(
 title: const Text("My Student Card"),
-backgroundColor: Colors.blue,
 ),
 body: Center(
 child: SingleChildScrollView(
@@ -92,10 +120,7 @@ subjectIndex = (subjectIndex + 1) % subjects.length;
 favoriteSubject = subjects[subjectIndex];
 });
 },
-child: const Text(
-"Change Subject",
-style: TextStyle(fontSize: 18),
-),
+child: const Text("Change Subject"),
 ),
 ),
 const SizedBox(height: 10),
@@ -104,12 +129,8 @@ SizedBox(
 width: double.infinity,
 child: ElevatedButton(
 onPressed: increaseAge,
-style: ElevatedButton.styleFrom(
-backgroundColor: Colors.purple,
-),
 child: const Text(
 "Happy Birthday! 🎂🎂",
-style: TextStyle(fontSize: 18),
 ),
 ),
 ),
